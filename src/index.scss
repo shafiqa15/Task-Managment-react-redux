@@ -1,0 +1,206 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$accent-color: #9b59b6;
+$background-light: #f9f9f9;
+$background-dark: #2c3e50;
+$text-light: #333;
+$text-dark: #ecf0f1;
+$border-radius: 10px;
+$shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+// Mixin for smooth transitions
+@mixin transition($property, $duration: 0.3s, $ease: ease) {
+  transition: $property $duration $ease;
+}
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: $background-light;
+  color: $text-light;
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: $primary-color;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+// Dark Mode Styles
+.dark {
+  background-color: $background-dark;
+  color: $text-dark;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  border-radius: $border-radius;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: $shadow-light;
+  background-color: $background-light;
+  @include transition(background-color, 0.3s, ease);
+  
+  &.dark {
+    background-color: $background-dark;
+    box-shadow: $shadow-dark;
+    @include transition(background-color, 0.3s, ease);
+  }
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  margin: 1rem;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: $text-light;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: $secondary-color;
+    transform: translateY(-2px);
+  }
+
+  &.remove {
+    background-color: #e74c3c;
+    &:hover {
+      background-color: #c0392b;
+    }
+  }
+
+  &.modal-btn {
+    background-color: $accent-color;
+    &:hover {
+      background-color: darken($accent-color, 10%);
+    }
+  }
+}
+
+input {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: $border-radius;
+  width: 100%;
+  max-width: 350px;
+  @include transition(border-color, 0.3s);
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 350px;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: $border-radius;
+    background-color: #fff;
+    @include transition(background-color, 0.3s, ease);
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+
+    button {
+      padding: 0.5rem;
+      background-color: #e74c3c;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+}
+
+// Modal Styles
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  @include transition(display, 0.3s ease);
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: $border-radius;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: $shadow-light;
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.modal-content button {
+  margin-top: 1rem;
+  background-color: $primary-color;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  color: $text-light;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: $secondary-color;
+    transform: translateY(-2px);
+  }
+}
