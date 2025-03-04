@@ -40,6 +40,7 @@ function App() {
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
+  
 
   return (
     <div className={`App ${themeClass}`}>
